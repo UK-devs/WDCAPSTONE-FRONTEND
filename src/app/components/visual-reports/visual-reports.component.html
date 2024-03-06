@@ -1,0 +1,64 @@
+<div class="app-content pt-3 p-md-3 p-lg-4">
+    <div class="container-xl">
+      
+      <h1 class="app-page-title">Visual Reports</h1>
+      <span class="app-page-subtitle">As of {{ currentDate | date: 'medium' }}</span>
+      <br><br>
+      
+    <div class="row g-4 mb-4">
+        <div class="col-12 col-lg-6">
+            <div class="app-card app-card-chart h-100 shadow-sm">
+                <div class="app-card-header p-3 border-0">
+                    <h4 class="app-card-title">Department Point System (Target</h4>
+                </div><!--//app-card-header-->
+                <div class="app-card-body p-4">
+                    <div class="chart-container">
+                        <canvas id="pieChart-department-point-system" ></canvas>
+                    </div>
+                </div><!--//app-card-body-->
+            </div><!--//app-card-->
+        </div><!--//col-->
+        
+        <div class="col-12 col-lg-6">
+            <div class="app-card app-card-chart h-100 shadow-sm">
+                <div class="app-card-header p-3 border-0">
+                    <h4 class="app-card-title">Overall Report</h4>
+                </div><!--//app-card-header-->
+                <div class="app-card-body p-4">
+                    <div class="chart-container">
+                        <canvas id="pieChart-overall-report"></canvas>
+                    </div>
+                </div><!--//app-card-body-->
+            </div><!--//app-card-->
+        </div><!--//col-->
+    </div><!--//row-->
+
+    <div class="row g-4 mb-4">
+        <div class="col-12 col-lg-6">
+            <div class="app-card app-card-chart h-100 shadow-sm">
+                <div class="app-card-header p-3 border-0">
+                    <h4 class="app-card-title">Total Proposed</h4>
+                </div><!--//app-card-header-->
+                <div class="app-card-body p-4">
+                    <div class="chart-container">
+                        <canvas id="barChart" ></canvas>
+                    </div>
+                </div><!--//app-card-body-->
+            </div><!--//app-card-->
+        </div><!--//col-->
+        
+        <div class="col-12 col-lg-6">
+            <div class="app-card app-card-chart h-100 shadow-sm">
+                <div class="app-card-header p-3 border-0">
+                    <h4 class="app-card-title">Department Top Chart</h4>
+                </div><!--//app-card-header-->
+                <div class="app-card-body p-4">
+                    <div class="chart-container">
+                        <canvas id="lineGraph-projects" ></canvas>
+                    </div>
+                </div><!--//app-card-body-->
+            </div><!--//app-card-->
+        </div><!--//col-->
+    </div><!--//row-->
+    </div><!--//container-fluid-->
+</div><!--//app-content-->

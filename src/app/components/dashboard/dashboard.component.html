@@ -1,0 +1,197 @@
+<div class="app-content p-md-3 p-lg-4">
+  <div class="container-xl">
+
+    <div class="row justify-content-between align-items-center">
+      <div class="col-auto">
+       
+        <h1 class="app-page-title">Dashboard</h1>
+        <span class="app-page-subtitle">As of {{ currentDate | date: 'medium' }}</span>
+        <br><br>
+       
+       
+      </div>
+    </div>
+    
+    <div class="row g-4 mb-4">
+      <div class="col-8">
+          <div class="row g-0 mb-4">
+          <div class="app-card app-card-chart h-100 shadow-sm" id="introductory">
+            <div class="app-card-body p-4">	
+              <h4 class="mb-3 text-white" *ngIf = "roleName !== 'CSCB'">Hello {{ roleName }} {{ user_fname }}!</h4>
+              <h4 class="mb-3 text-white" *ngIf = "roleName === 'CSCB'">Hello {{ roleName }}-{{ user_department }} {{ user_fname }}!</h4>		   		   
+              <div class="row gx-5 gy-3">
+                <div class="col-12 col-lg-8 text-white">
+                  <div>Welcome to UNLAD KOMUNIDAD OCES Management System. You can now begin to view and submit your proposals. </div>
+                </div><!--//col-->
+                <div class="col-12 col-lg-4">
+                  <a class="btn app-btn-primary" (click) = "onViewDocumentReports()">View Reports</a>
+                </div><!--//col-->
+              </div><!--//row-->
+            </div><!--//app-card-body-->
+          </div><!--//app-card-->
+        </div>
+
+        <div class="row g-4 mb-4">
+          <div class="col-6">
+            <div class="app-card app-card-chart h-100 shadow-sm">
+              <div class="app-card-header p-3 border-0">
+                <h4 class="app-card-title">{{ monthYearString }}</h4>
+              </div><!--//app-card-header-->
+              <div class="app-card-body p-4">					   
+               
+                 
+                  <full-calendar [options]="calendarOptions"></full-calendar>
+
+                
+              </div><!--//app-card-body-->
+            </div><!--//app-card-->
+          </div>
+
+          <div class="col-6">
+            <div class="app-card app-card-chart h-100 shadow-sm">
+              <div class="app-card-header p-3 border-0">
+                <h4 class="app-card-title">Progress Report</h4>
+              </div><!--//app-card-header-->
+              <div class="app-card-body p-4">					   
+                <div class="chart-container">
+               
+                  <canvas id="pieChart-progress-report"></canvas>
+
+                  <h6 class = "text-center" *ngIf = "approved_projects_count < 1 && done_projects_count < 1">No Record(s) yet</h6>
+
+                </div>
+              </div><!--//app-card-body-->
+            </div><!--//app-card-->
+          </div>
+          
+        </div>
+
+        <div class="row g-0 mb-4">
+          <div class="app-card app-card-chart h-100 shadow-sm">
+            <div class="app-card-header p-3 border-0">
+              <h4 class="app-card-title">Overall Report | {{ currentDate | date: 'yyyy' }}</h4>
+            </div><!--//app-card-header-->
+            <div class="app-card-body p-4">					   
+              <div class="chart-container">
+                <canvas id="barChartOverallReport" ></canvas>
+              </div>
+            </div><!--//app-card-body-->
+          </div><!--//app-card-->
+        </div>
+
+        <div class="row g-0 mb-4">
+          <div class="app-card app-card-chart h-100 shadow-sm">
+            <div class="app-card-header p-3 border-0">
+              <h4 class="app-card-title">Projects by Month</h4>
+            </div><!--//app-card-header-->
+            <div class="app-card-body p-4">					   
+              <div class="chart-container">
+                <canvas id="lineGraph-projects" ></canvas>
+              </div>
+            </div><!--//app-card-body-->
+          </div><!--//app-card-->
+        </div>
+        </div><!--//1st col-->
+
+      <div class="col-4">
+        <div class="row g-0 mb-4">
+          <div class="app-card app-card-chart h-100 shadow-sm">
+            <div class="app-card-header p-3 border-0">
+              <h4 class="app-card-title">Recent Proposals</h4>
+            </div><!--//app-card-header-->
+            <div class="app-card-body p-4">					   
+              <div class = "overflow-auto" *ngIf = "roleName === 'Employee'" style = "height:490px;">
+                
+                <div class="card my-2" *ngFor = "let item_proposals of proposalDetailsFilterByCurrentUser;index as i">
+                  <div class="card-body" *ngIf = "item_proposals.status !== '0'">
+                   
+                    <div class="row">
+                      <div class="col-auto"><i class = "fa fa-image fa-4x text-danger"></i></div>
+                      <div class="col-auto">
+                        <b>{{ item_proposals.project_title }}</b>
+
+                        <p>
+
+                          <small>Target: {{ item_proposals.target_period }} <br/> Location: {{ item_proposals.venue }} </small>
+                          <small><small> Submitted on  {{ item_proposals.createdAt | date: 'short' }} </small></small>
+
+                        </p>
+                        
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div> <!-- overflow-auto -->
+
+              <div class = "overflow-auto" *ngIf = "roleName === 'Super Admin' || roleName === 'Admin'" style = "height:490px;">
+                
+                <div class="card my-2" *ngFor = "let item_proposals of proposalDetailsDisplay;index as i">
+                  <div class="card-body" *ngIf = "item_proposals.status !== '0'" (click) = "onViewDocumentReport(item_proposals._id)">
+                   
+                    <div class="row">
+                      <div class="col-auto"><i class = "fa fa-image fa-4x text-danger"></i></div>
+                      <div class="col-auto">
+                        <b>{{ item_proposals.project_title }}</b>
+
+                        <p>
+
+                          <small>Target: {{ item_proposals.target_period }} <br/> Location: {{ item_proposals.venue }} </small><br/>
+                          <small><small> Submitted on  {{ item_proposals.createdAt | date: 'short' }} </small></small>
+                         
+                        </p>
+                        
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div> <!-- overflow-auto Super Admin and Admin View of Recent Proposals -->
+
+              <div class = "overflow-auto" *ngIf = "roleName === 'Student'" style = "height:490px;">
+                
+                <div class="card my-2" *ngFor = "let item_proposals of proposalDetailsFilterByCurrentUser;index as i">
+                  <div class="card-body">
+                   
+                    <div class="row">
+                      <div class="col-auto"><i class = "fa fa-image fa-4x text-danger"></i></div>
+                      <div class="col-auto">
+                        <b>{{ item_proposals.project_title }}</b>
+
+                        <p>
+
+                          <small>Target: {{ item_proposals.target_period }} <br/> Location: {{ item_proposals.venue }} </small><br/>
+                          <small><small> Submitted on  {{ item_proposals.createdAt | date: 'short' }} </small></small>
+                         
+                        </p>
+                        
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div> <!-- overflow-auto Student View of Recent Proposals -->
+
+            </div><!--//app-card-body-->
+          </div><!--//app-card-->
+        </div>
+        <div class="row g-0 mb-4">
+          <div class="app-card app-card-chart h-100 shadow-sm">
+            <div class="app-card-header p-3 border-0">
+              <h4 class="app-card-title">Top Chart</h4>
+            </div><!--//app-card-header-->
+            <div class="app-card-body p-4">					   
+              <div class="chart-container">
+                <canvas id="chart-pie" ></canvas>
+              </div>
+            </div><!--//app-card-body-->
+          </div><!--//app-card-->
+        </div>
+      </div>
+    </div>
+    
+  </div><!--//container-fluid-->
+</div><!--//app-content-->

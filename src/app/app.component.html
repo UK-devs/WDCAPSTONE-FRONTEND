@@ -1,0 +1,22 @@
+<div class="app">
+  
+
+
+    <header class="fixed-top" *ngIf = "isLoggedIn; else elseBlock">
+      
+      <app-topnav [CurrentMenuTitle] = "current_menu"/>
+      <app-sidenav></app-sidenav>
+
+    </header>
+
+    <ng-template  #elseBlock></ng-template>
+
+    <div class="app-wrapper bg-image-cover">
+    
+      <router-outlet></router-outlet>  
+      
+    </div>
+
+
+
+</div>
