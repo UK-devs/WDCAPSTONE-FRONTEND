@@ -1,5 +1,5 @@
 import { Component, Injectable, Output, EventEmitter } from '@angular/core';
-import { Chart } from 'Chart.js';
+// import { Chart } from 'Chart.js';
 import 'chart.js/auto';
 import { SharedDataService } from '../../services/shared-data.service';
 import { InputService } from '../../services/input.service';
@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
+declare var require: any;
+const Chart = require('chart.js/auto');
 @Injectable({
   providedIn: 'root',
 })

@@ -10,7 +10,7 @@ import {
 
 import { CalendarOptions, Calendar, EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { Chart } from 'Chart.js';
+// import { Chart } from 'Chart.js';
 import 'chart.js/auto';
 import { SharedDataService } from '../../services/shared-data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -18,6 +18,8 @@ import { DatePipe, DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
+declare var require: any;
+const Chart = require('chart.js/auto');
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
