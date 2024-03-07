@@ -1,4 +1,4 @@
 export const apiUrls = {
-  authServiceApi: 'http://localhost:8800/api/auth/',
-  inputServiceApi: 'http://localhost:8800/api/reports/',  
+  authServiceApi: 'https://wdcapstone-backend.onrender.com/api/auth/',
+  inputServiceApi: 'https://wdcapstone-backend.onrender.com/api/reports/',
 };
