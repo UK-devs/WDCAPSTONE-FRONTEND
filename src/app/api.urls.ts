@@ -1,5 +1,5 @@
 export const apiUrls = {
-  authServiceApi: 'https://unladkomunidad-nxy6f.ondigitalocean.app/api/auth/',
+  authServiceApi: 'https://unladkomunidad-d2rgm.ondigitalocean.app/api/auth/',
   inputServiceApi:
-    'https://unladkomunidad-nxy6f.ondigitalocean.app/api/reports/',
+    'https://unladkomunidad-d2rgm.ondigitalocean.app/api/reports/',
 };
