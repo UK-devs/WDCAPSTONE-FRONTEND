@@ -1,4 +1,5 @@
 export const apiUrls = {
-  authServiceApi: 'https://wdcapstone-backend.onrender.com/api/auth/',
-  inputServiceApi: 'https://wdcapstone-backend.onrender.com/api/reports/',
+  authServiceApi: 'https://unladkomunidad-nxy6f.ondigitalocean.app/api/auth/',
+  inputServiceApi:
+    'https://unladkomunidad-nxy6f.ondigitalocean.app/api/reports/',
 };
